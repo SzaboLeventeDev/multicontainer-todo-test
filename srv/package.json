@@ -1,0 +1,25 @@
+{
+  "name": "srv",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Levente Szabo",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build:test": "docker build -t multicontainer_todo_client:test --build-arg ENVIRONMENT=test",
+    "build:prod": "docker build -t multicontainer_todo_client:prod --build-arg ENVIRONMENT=production",
+    "docker:test": "cross-env docker-compose -p multicontainer_todo_client-test --env-file .env.test up --build",
+    "docker:prod": "cross-env docker-compose -p multicontainer_todo_client-prod --env-file .env.production up --build"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.7.4",
+    "cross-env": "^7.0.3",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.6.2"
+  }
+}
