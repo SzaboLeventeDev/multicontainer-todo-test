@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ToDoState, type Task } from '@/types';
-import { computed } from 'vue';
+import { computed, inject } from 'vue';
 import TrashIcon from 'vue-material-design-icons/TrashCan.vue';
 import ProgressClockIcon from 'vue-material-design-icons/ProgressClock.vue';
 import CheckIcon from 'vue-material-design-icons/Check.vue';
-import NoteAlertIcon from 'vue-material-design-icons/NoteAlert.vue'
+import NoteAlertIcon from 'vue-material-design-icons/NoteAlert.vue';
 
 const props = defineProps<{task: Task}>();
 const cardStyle='py-4 px-4 flex justify-between bg-blue-300 w-[80%] m-auto rounded-lg'
@@ -38,9 +38,18 @@ const cardColorByState = computed(() => {
       return 'bg-gray-300';
   }
 });
+
+const updateTaskState = inject<((task:Task) => void)>('updateTaskState')
+
+const handleClick = () => {
+  if (updateTaskState) {
+    updateTaskState(props.task);
+  }
+};
+
 </script>
 <template>
-  <div :class="[cardStyle, cardColorByState]">
+  <div :class="[cardStyle, cardColorByState]" @click="handleClick">
     <h2 class="text-base">{{ props.task.name }}</h2>
     <component :is="taskStateIcon" />
   </div>

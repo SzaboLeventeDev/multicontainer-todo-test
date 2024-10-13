@@ -6,7 +6,7 @@ export enum ToDoState {
 }
 
 export type Task = {
-  id?: string;
+  id: number;
   name: string;
   state: ToDoState;
 };
@@ -22,6 +22,8 @@ export type TaskDbRecord = {
 
 export type Config = {
   port: number;
+  /** for CORS configuration */
+  clientPort: number;
 };
 
 export type DbConfig = {

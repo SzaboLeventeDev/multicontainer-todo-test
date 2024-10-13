@@ -26,7 +26,6 @@ export function useApi() {
   };
 
   const postData = async (endpoint: string, payload: Task) => {
-    console.log('payload', { payload });
     loading.value = true;
     error.value = null;
     try {
@@ -48,11 +47,37 @@ export function useApi() {
     }
   };
 
+  const updateData = async (endpoint: string, payload: Task) => {
+    loading.value = true;
+    error.value = null;
+
+    try {
+      const response = await fetch(`${baseURL}${endpoint}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      data.value = await response.json();
+    } catch (err: any) {
+      error.value = err.message || 'Request failed';
+    } finally {
+      loading.value = false;
+    }
+  };
+
   return {
     data,
     error,
     loading,
     getData,
     postData,
+    updateData,
   };
 }
