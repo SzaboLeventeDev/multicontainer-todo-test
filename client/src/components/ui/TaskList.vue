@@ -9,7 +9,7 @@ defineProps<{tasks: Task[]}>()
 <template>
   <div class="flex flex-col gap-[1rem] mt-[2rem]">
     <ToDoCard v-if='tasks.length > 0' v-for="task in tasks" :task="task"/>
-      <h2 v-if="tasks.length === 0">
+      <h2 v-if="tasks.length === 0" class=" text-center text-red-500 dark:text-red-400">
         There are not any task added yet.
       </h2>
   </div>
