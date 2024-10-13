@@ -8,16 +8,30 @@
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build:test": "docker build -t multicontainer_todo_client:test --build-arg ENVIRONMENT=test",
     "build:prod": "docker build -t multicontainer_todo_client:prod --build-arg ENVIRONMENT=production",
+    "docker:dev:db": "cross-env NODE_ENV=development docker-compose -f ../docker/db/docker-compose.yml -p multicontainer-todo-development --env-file ./src/db/.env.development up --build",
     "docker:test": "cross-env docker-compose -p multicontainer_todo_client-test --env-file .env.test up --build",
-    "docker:prod": "cross-env docker-compose -p multicontainer_todo_client-prod --env-file .env.production up --build"
+    "docker:prod": "cross-env docker-compose -p multicontainer_todo_client-prod --env-file .env.production up --build",
+    "sequelize": "sequelize init",
+    "migration": "sequelize-cli db:migrate --config src/db/config/config.cjs",
+    "migration:generate": "npx sequelize-cli migration:generate --name --config src/db/config/config.cjs",
+    "migration:undo": "npx sequelize-cli db:migrate:undo --config src/db/config/config.cjs",
+    "migration:generate:seed": "npx sequelize-cli seed:generate --name --config src/db/config/config.cjs",
+    "migration:data": "npx sequelize-cli db:seed:all --config src/db/config/config.cjs"
   },
   "dependencies": {
-    "express": "^4.21.0"
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "pg": "^8.13.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.4"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/node": "^22.7.4",
     "cross-env": "^7.0.3",
+    "sequelize-cli": "^6.6.2",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.6.2"
