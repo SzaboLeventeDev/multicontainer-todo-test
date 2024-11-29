@@ -12,7 +12,7 @@ export type Task = {
 };
 
 export type TaskDbRecord = {
-  id: string;
+  id: number;
   name: string;
   state: ToDoState;
   createdAt: string;

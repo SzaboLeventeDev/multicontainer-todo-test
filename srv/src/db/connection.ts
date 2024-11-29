@@ -1,15 +1,14 @@
 import { Sequelize } from 'sequelize';
-//import dbConfig from './config/config';
-const dbConfig = require('./config/config.cjs');
+import { dbConfig } from './config/config';
 import { Environment } from '../types/types';
 
 const env: Environment = (process.env.NODE_ENV as Environment) ?? 'development';
 export const db = new Sequelize(
-  dbConfig[env].database,
-  dbConfig[env].username,
-  dbConfig[env].password,
+  dbConfig.database,
+  dbConfig.username,
+  dbConfig.password,
   {
-    host: dbConfig[env].host,
+    host: dbConfig.host,
     dialect: 'postgres',
     timezone: '+02:00',
 
