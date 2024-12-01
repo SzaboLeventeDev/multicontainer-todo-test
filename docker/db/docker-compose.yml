@@ -4,14 +4,9 @@ networks:
     external: true
 services:
   database:
-    container_name: multicontainer_todo_database-${ENVIRONMENT}
+    container_name: multicontainer_todo_database-${NODE_ENV}
     image: postgres:14-alpine
-    env_file: "./.env.${ENVIRONMENT}"
-    environment:
-      POSTGRES_DB:   ${POSTGRES_DB}
-      POSTGRES_USER:  ${POSTGRES_USER}
-      POSTGRES_PASSWORD:  ${POSTGRES_PASSWORD}
-      NODE_ENV:  ${NODE_ENV}
+    env_file: "../../srv/src/db/.env.${NODE_ENV}"
     ports:
       - '${DATABASE_PORT_EXT}:5432'
     volumes:
