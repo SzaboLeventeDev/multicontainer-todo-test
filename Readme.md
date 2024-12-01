@@ -3,6 +3,8 @@
 ## Summary
 This application was built as part of my portfolio to practise and deepen my containerization knowledge. It includes both client and server side using Vue.JS on the frontend side and Express.JS as backend extended with TS. As database Postgres generated in a container.
 
+The app has two main pages, one for adding new task and the other to list the existing tasks.
+
 ### First steps
 1. Clone the repository using HTTPS link or SSH.
 
@@ -13,6 +15,12 @@ This application was built as part of my portfolio to practise and deepen my con
 ### First steps
 Navigate to the /client folder in the CLI and install the packages using ``yarn install``.
 
+### Script blocks
+``build`` is building the app locally.
+
+``build:<environment>`` scripts are used to build the application to the selected environment.
+
+``docker:<environment>`` scripts are used to run the compose file of the selected application.
 ## Backend
 
 ### First steps
