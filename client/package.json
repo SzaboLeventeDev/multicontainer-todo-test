@@ -6,13 +6,15 @@
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
-    "build:test": "docker build -t multicontainer_todo_client:test --build-arg ENVIRONMENT=test",
-    "build:prod": "docker build -t multicontainer_todo_client:production --build-arg ENVIRONMENT=production",
+    "build:development": "docker build -t multicontainer_todo_client:dev --build-arg NODE_ENV=development .",
+    "build:test": "docker build -t multicontainer_todo_client:test --build-arg NODE_ENV=test",
+    "build:prod": "docker build -t multicontainer_todo_client:production --build-arg NODE_ENV=production",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
-    "docker:test": "cross-env ENVIRONMENT=test docker-compose -p multicontainer_todo_client-test .env.test up --build",
-    "docker:prod": "cross-env ENVIRONMENT=production docker-compose -p multicontainer_todo_client-production .env.production up --build"
+    "docker:development": "cross-env NODE_ENV=development docker-compose -f ../docker/client/docker-compose.yml -p multicontainer-todo-development up --build",
+    "docker:test": "cross-env NODE_ENV=test docker-compose -f ../docker/client/docker-compose.yml -p multicontainer-todo-client-test up --build",
+    "docker:production": "cross-env NODE_ENV=production docker-compose -f ../docker/client/docker-compose.yml -p multicontainer-todo-client-production up --build"
   },
   "dependencies": {
     "vue": "^3.4.29",

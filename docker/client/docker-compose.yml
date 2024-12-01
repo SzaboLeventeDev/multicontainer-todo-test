@@ -1,0 +1,17 @@
+version: "3.8"
+networks:
+  app_network:
+    external: true
+services:
+  client:
+    container_name: multicontainer_todo_client-${NODE_ENV}
+    build:
+      context: ../../client
+      args:
+        NODE_ENV: ${NODE_ENV}
+      dockerfile: Dockerfile
+    env_file: "../../client/.env.${NODE_ENV}"
+    ports:
+      - '8080:8080'
+    networks:
+      - app_network
