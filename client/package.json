@@ -12,9 +12,9 @@
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
-    "docker:development": "cross-env NODE_ENV=development docker-compose -f ../docker/client/docker-compose.yml -p multicontainer-todo-development up --build",
-    "docker:test": "cross-env NODE_ENV=test docker-compose -f ../docker/client/docker-compose.yml -p multicontainer-todo-client-test up --build",
-    "docker:production": "cross-env NODE_ENV=production docker-compose -f ../docker/client/docker-compose.yml -p multicontainer-todo-client-production up --build"
+    "docker:development": "cross-env NODE_ENV=development docker-compose -f ../docker/client/docker-compose.yml -p multicontainer-todo-development up --build -d",
+    "docker:test": "cross-env NODE_ENV=test docker-compose -f ../docker/client/docker-compose.yml -p multicontainer-todo-client-test up --build -d",
+    "docker:production": "cross-env NODE_ENV=production docker-compose -f ../docker/client/docker-compose.yml -p multicontainer-todo-client-production up --build -d"
   },
   "dependencies": {
     "vue": "^3.4.29",
