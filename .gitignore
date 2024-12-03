@@ -52,6 +52,7 @@ pnpm-debug.log*
 
 # Express.js
 /build/
+*/dist/
 tmp/
 .env
 .env.*.local
@@ -61,7 +62,7 @@ coverage/
 
 # Ignore any compiled files or output directories
 *.out
-*.js
+
 *.map
 
 #env files
