@@ -1,8 +1,6 @@
 import { Sequelize } from 'sequelize';
-import { dbConfig } from './config/config';
-import { Environment } from '../types/types';
+const dbConfig = require('./config/config.cjs');
 
-const env: Environment = (process.env.NODE_ENV as Environment) ?? 'development';
 export const db = new Sequelize(
   dbConfig.database,
   dbConfig.username,
